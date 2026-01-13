@@ -1,4 +1,5 @@
 import socket
+import shutil
 import subprocess
 import time
 
@@ -36,6 +37,9 @@ def _localnet_ready() -> bool:
 @pytest.fixture(scope="session", autouse=True)
 def ensure_localnet_running() -> None:
     """Make sure a local Algorand node is reachable before running integration tests."""
+    if shutil.which("algokit") is None:
+        pytest.skip("Algokit CLI is required to run tests; skipping because it is not installed.")
+
     if _localnet_ready():
         return
 
