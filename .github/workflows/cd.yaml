@@ -5,7 +5,7 @@ run-name: ${{ inputs.production_release && 'Production Release' || 'Beta Release
 on:
   push:
     branches:
-      - main
+      - dev
     paths-ignore:
       - "docs/**"
   workflow_dispatch:
@@ -78,7 +78,6 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           verbose: true
-
 
   publish-docs:
     name: Publish Docs
