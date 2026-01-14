@@ -1,0 +1,793 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="AlgorandSubscriber" href="subscriber.html" />
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>Algokit Subscriber documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=8c0639ea" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="#"><div class="brand">Algokit Subscriber  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+  
+  
+  <span class="sidebar-brand-text">Algokit Subscriber  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="subscriber.html"><code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="subscriptions.html"><code class="docutils literal notranslate"><span class="pre">get_subscribed_transactions</span></code></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of algokit_subscriber</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of algokit_subscriber.types</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.indexer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types.indexer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.block.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types.block</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.event_emitter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types.event_emitter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.subscription.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types.subscription</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.arc28.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types.arc28</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.transaction.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types.transaction</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.subscriber.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.subscriber</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.indexer_lookup.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.indexer_lookup</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.utils</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.block.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.block</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.transform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.transform</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.subscription.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.subscription</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/index.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="algorand-transaction-subscription-indexing">
+<h1>Algorand transaction subscription / indexing<a class="headerlink" href="#algorand-transaction-subscription-indexing" title="Link to this heading">¶</a></h1>
+<section id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary modules</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">algokit_subscriber</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlgorandSubscriber</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">algosdk.v2client</span><span class="w"> </span><span class="kn">import</span> <span class="n">algod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">algokit_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_algod_client</span><span class="p">,</span> <span class="n">get_algonode_config</span>
+
+<span class="c1"># Create an Algod client</span>
+<span class="n">algod_client</span> <span class="o">=</span> <span class="n">get_algod_client</span><span class="p">(</span><span class="n">get_algonode_config</span><span class="p">(</span><span class="s2">&quot;testnet&quot;</span><span class="p">,</span> <span class="s2">&quot;algod&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span> <span class="c1"># testnet used for demo purposes</span>
+
+<span class="c1"># Create subscriber (example with filters)</span>
+<span class="n">subscriber</span> <span class="o">=</span> <span class="n">AlgorandSubscriber</span><span class="p">(</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;filters&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;filter1&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;pay&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;sender&quot;</span><span class="p">:</span> <span class="s2">&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY5HFKQ&quot;</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">},</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;watermark_persistence&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;get&quot;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;set&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;sync_behaviour&quot;</span><span class="p">:</span> <span class="s2">&quot;skip-sync-newest&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;max_rounds_to_sync&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">algod_client</span><span class="o">=</span><span class="n">algod_client</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Set up subscription(s)</span>
+<span class="n">subscriber</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s2">&quot;filter1&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">transaction</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Received transaction: </span><span class="si">{</span><span class="n">transaction</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+
+<span class="c1"># Set up error handling</span>
+<span class="n">subscriber</span><span class="o">.</span><span class="n">on_error</span><span class="p">(</span><span class="k">lambda</span> <span class="n">error</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error occurred: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+
+<span class="c1"># Either: Start the subscriber (if in long-running process)</span>
+<span class="c1"># subscriber.start()</span>
+
+<span class="c1"># OR: Poll the subscriber (if in cron job / periodic lambda)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">subscriber</span><span class="o">.</span><span class="n">poll_once</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Polled </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;subscribed_transactions&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> transactions&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Polled 0 transactions
+</pre></div>
+</div>
+</section>
+<section id="capabilities">
+<h2>Capabilities<a class="headerlink" href="#capabilities" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#algorand-transaction-subscription--indexing"><span class="xref myst">Algorand transaction subscription / indexing</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#quick-start"><span class="xref myst">Quick start</span></a></p></li>
+<li><p><a class="reference internal" href="#capabilities"><span class="xref myst">Capabilities</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#notification-and-indexing"><span class="xref myst">Notification <em>and</em> indexing</span></a></p></li>
+<li><p><a class="reference internal" href="#low-latency-processing"><span class="xref myst">Low latency processing</span></a></p></li>
+<li><p><a class="reference internal" href="#watermarking-and-resilience"><span class="xref myst">Watermarking and resilience</span></a></p></li>
+<li><p><a class="reference internal" href="#extensive-subscription-filtering"><span class="xref myst">Extensive subscription filtering</span></a></p></li>
+<li><p><a class="reference internal" href="#arc-28-event-subscription-and-reads"><span class="xref myst">ARC-28 event subscription and reads</span></a></p></li>
+<li><p><a class="reference internal" href="#first-class-inner-transaction-support"><span class="xref myst">First-class inner transaction support</span></a></p></li>
+<li><p><a class="reference internal" href="#state-proof-support"><span class="xref myst">State-proof support</span></a></p></li>
+<li><p><a class="reference internal" href="#simple-programming-model"><span class="xref myst">Simple programming model</span></a></p></li>
+<li><p><a class="reference internal" href="#easy-to-deploy"><span class="xref myst">Easy to deploy</span></a></p></li>
+<li><p><a class="reference internal" href="#fast-initial-index"><span class="xref myst">Fast initial index</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/importlib.metadata.html#entry-points" title="Python 3.14"><span class="xref myst">Entry points</span></a></p></li>
+<li><p><a class="reference internal" href="#reference-docs"><span class="xref myst">Reference docs</span></a></p></li>
+<li><p><a class="reference internal" href="#emit-arc-28-events"><span class="xref myst">Emit ARC-28 events</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#algorand-python"><span class="xref myst">Algorand Python</span></a></p></li>
+<li><p><a class="reference internal" href="#tealscript"><span class="xref myst">TealScript</span></a></p></li>
+<li><p><a class="reference internal" href="#pyteal"><span class="xref myst">PyTEAL</span></a></p></li>
+<li><p><a class="reference internal" href="#teal"><span class="xref myst">TEAL</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#next-steps"><span class="xref myst">Next steps</span></a></p></li>
+</ul>
+</li>
+</ul>
+<section id="notification-and-indexing">
+<h3>Notification <em>and</em> indexing<a class="headerlink" href="#notification-and-indexing" title="Link to this heading">¶</a></h3>
+<p>This library supports the ability to stay at the tip of the chain and power notification / alerting type scenarios through the use of the <code class="docutils literal notranslate"><span class="pre">sync_behaviour</span></code> parameter in both <a class="reference internal" href="subscriber.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code></span></a> and <a class="reference internal" href="subscriptions.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">get_subscribed_transactions</span></code></span></a>. For example to stay at the tip of the chain for notification/alerting scenarios you could do:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">subscriber</span> <span class="o">=</span> <span class="n">AlgorandSubscriber</span><span class="p">({</span><span class="s2">&quot;sync_behavior&quot;</span><span class="p">:</span> <span class="s1">&#39;skip-sync-newest&#39;</span><span class="p">,</span> <span class="s2">&quot;max_rounds_to_sync&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="o">...</span><span class="p">},</span> <span class="o">...</span><span class="p">)</span>
+<span class="c1"># or:</span>
+<span class="n">get_subscribed_transactions</span><span class="p">({</span><span class="s2">&quot;sync_behaviour&quot;</span><span class="p">:</span> <span class="s2">&quot;skip-sync-newest&quot;</span><span class="p">,</span> <span class="s2">&quot;max_rounds_to_sync&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="o">...</span><span class="p">},</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">current_round</span></code> parameter (availble when calling <code class="docutils literal notranslate"><span class="pre">get_subscribed_transactions</span></code>) can be used to set the tip of the chain. If not specified, the tip will be automatically detected. Whilst this is generally not needed, it is useful in scenarios where the tip is being detected as part of another process and you only want to sync to that point and no further.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">max_rounds_to_sync</span></code> parameter controls how many rounds it will process when first starting when it’s not caught up to the tip of the chain. While it’s caught up to the chain it will keep processing as many rounds as are available from the last round it processed to when it next tries to sync (see below for how to control that).</p>
+<p>If you expect your service will resiliently always stay running, should never get more than <code class="docutils literal notranslate"><span class="pre">max_rounds_to_sync</span></code> from the tip of the chain, there is a problem if it processes old records and you’d prefer it throws an error when losing track of the tip of the chain rather than continue or skip to newest you can set the <code class="docutils literal notranslate"><span class="pre">sync_behaviour</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">fail</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">sync_behaviour</span></code> parameter can also be set to <code class="docutils literal notranslate"><span class="pre">sync-oldest-start-now</span></code> if you want to process all transactions once you start alerting/notifying. This requires that your service needs to keep running otherwise it could fall behind and start processing old records / take a while to catch back up with the tip of the chain. This is also a useful setting if you are creating an indexer that only needs to process from the moment the indexer is deployed rather than from the beginning of the chain. Note: this requires the <a class="reference internal" href="#watermarking-and-resilience"><span class="xref myst">initial watermark</span></a> to start at 0 to work.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">sync_behaviour</span></code> parameter can also be set to <code class="docutils literal notranslate"><span class="pre">sync-oldest</span></code>, which is a more traditional indexing scenario where you want to process every single block from the beginning of the chain. This can take a long time to process by default (e.g. days), noting there is a <a class="reference internal" href="#fast-initial-index"><span class="xref myst">fast catchup feature</span></a>. If you don’t want to start from the beginning of the chain you can <a class="reference internal" href="#watermarking-and-resilience"><span class="xref myst">set the initial watermark</span></a> to a higher round number than 0 to start indexing from that point.</p>
+</section>
+<section id="low-latency-processing">
+<h3>Low latency processing<a class="headerlink" href="#low-latency-processing" title="Link to this heading">¶</a></h3>
+<p>You can control the polling semantics of the library when using the <a class="reference internal" href="subscriber.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code></span></a> by either specifying the <code class="docutils literal notranslate"><span class="pre">frequency_in_seconds</span></code> parameter to control the duration between polls or you can use the <code class="docutils literal notranslate"><span class="pre">wait_for_block_when_at_tip</span></code> parameter to indicate the subscriber should <a class="reference external" href="https://dev.algorand.co/reference/rest-apis/algod/#waitforblock">call algod to ask it to inform the subscriber when a new round is available</a> so the subscriber can immediately process that round with a much lower-latency. When this mode is set, the subscriber intelligently uses this option only when it’s caught up to the tip of the chain, but otherwise uses <code class="docutils literal notranslate"><span class="pre">frequency_in_seconds</span></code> while catching up to the tip of the chain.</p>
+<p>e.g.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># When catching up to tip of chain will pool every 1s for the next 1000 blocks, but when caught up will poll algod for a new block so it can be processed immediately with low latency</span>
+<span class="n">subscriber</span> <span class="o">=</span> <span class="n">AlgorandSubscriber</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;frequency_in_seconds&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;wait_for_block_when_at_tip&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;max_rounds_to_sync&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="c1"># ... other configuration options</span>
+<span class="p">},</span> <span class="o">...</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">subscriber</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you are using <a class="reference internal" href="subscriptions.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">get_subscribed_transactions</span></code></span></a> or the <code class="docutils literal notranslate"><span class="pre">pollOnce</span></code> method on <code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code> then you can use your infrastructure and/or surrounding orchestration code to take control of the polling duration.</p>
+<p>If you want to manually run code that waits for a given round to become available you can execute the following algosdk code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">algod</span><span class="o">.</span><span class="n">status_after_block</span><span class="p">(</span><span class="n">round_number_to_wait_for</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="watermarking-and-resilience">
+<h3>Watermarking and resilience<a class="headerlink" href="#watermarking-and-resilience" title="Link to this heading">¶</a></h3>
+<p>You can create reliable syncing / indexing services through a simple round watermarking capability that allows you to create resilient syncing services that can recover from an outage.</p>
+<p>This works through the use of the <code class="docutils literal notranslate"><span class="pre">watermark_persistence</span></code> parameter in <a class="reference internal" href="subscriber.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code></span></a> and <code class="docutils literal notranslate"><span class="pre">watermark</span></code> parameter in <a class="reference internal" href="subscriptions.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">get_subscribed_transactions</span></code></span></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_saved_watermark</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="c1"># Return the watermark from a persistence store e.g. database, redis, file system, etc.</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">save_watermark</span><span class="p">(</span><span class="n">new_watermark</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># Save the watermark to a persistence store e.g. database, redis, file system, etc.</span>
+    <span class="k">pass</span>
+
+<span class="o">...</span>
+
+<span class="n">subscriber</span> <span class="o">=</span> <span class="n">AlgorandSubscriber</span><span class="p">({</span>
+    <span class="s2">&quot;watermark_persistence&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;get&quot;</span><span class="p">:</span> <span class="n">get_saved_watermark</span><span class="p">,</span>
+        <span class="s2">&quot;set&quot;</span><span class="p">:</span> <span class="n">save_watermark</span>
+    <span class="p">},</span>
+    <span class="c1"># ... other configuration options</span>
+<span class="p">},</span> <span class="o">...</span><span class="p">)</span>
+
+<span class="c1"># or:</span>
+
+<span class="n">watermark</span> <span class="o">=</span> <span class="n">get_saved_watermark</span><span class="p">()</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">get_subscribed_transactions</span><span class="p">(</span><span class="n">watermark</span><span class="o">=</span><span class="n">watermark</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="n">save_watermark</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">new_watermark</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>By using a persistence store, you can gracefully respond to an outage of your subscriber. The next time it starts it will pick back up from the point where it last persisted. It’s worth noting this provides at least once delivery semantics so you need to handle duplicate events.</p>
+<p>Alternatively, if you want to create at most once delivery semantics you could use the <a class="reference external" href="https://microservices.io/patterns/data/transactional-outbox.html">transactional outbox pattern</a> and wrap a unit of work from a ACID persistence store (e.g. a SQL database with a serializable or repeatable read transaction) around the watermark retrieval, transaction processing and watermark persistence so the processing of transactions and watermarking of a single poll happens in a single atomic transaction. In this model, you would then process the transactions in a separate process from the persistence store (and likely have a flag on each transaction to indicate if it has been processed or not). You would need to be careful to ensure that you only have one subscriber actively running at a time to guarantee this delivery semantic. To ensure resilience you may want to have multiple subscribers running, but a primary node that actually executes based on retrieval of a distributed semaphore / lease.</p>
+<p>If you are doing a quick test or creating an ephemeral subscriber that just needs to exist in-memory and doesn’t need to recover resiliently (useful with <code class="docutils literal notranslate"><span class="pre">sync_behaviour</span></code> of <code class="docutils literal notranslate"><span class="pre">skip-sync-newest</span></code> for instance) then you can use an in-memory variable instead of a persistence store, e.g.:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">watermark</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">subscriber</span> <span class="o">=</span> <span class="n">AlgorandSubscriber</span><span class="p">(</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;watermark_persistence&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;get&quot;</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">watermark</span><span class="p">,</span>
+            <span class="s2">&quot;set&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">new_watermark</span><span class="p">:</span> <span class="nb">globals</span><span class="p">()</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">watermark</span><span class="o">=</span><span class="n">new_watermark</span><span class="p">)</span>
+        <span class="p">},</span>
+        <span class="c1"># ... other configuration options</span>
+    <span class="p">},</span>
+    <span class="c1"># ... other arguments</span>
+<span class="p">)</span>
+
+<span class="c1"># or:</span>
+
+<span class="n">watermark</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">get_subscribed_transactions</span><span class="p">(</span><span class="n">watermark</span><span class="o">=</span><span class="n">watermark</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="n">watermark</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">new_watermark</span>
+</pre></div>
+</div>
+</section>
+<section id="extensive-subscription-filtering">
+<h3>Extensive subscription filtering<a class="headerlink" href="#extensive-subscription-filtering" title="Link to this heading">¶</a></h3>
+<p>This library has extensive filtering options available to you so you can have fine-grained control over which transactions you are interested in.</p>
+<p>There is a core type that is used to specify the filters <a class="reference internal" href="subscriptions.html#transactionfilter"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">TransactionFilter</span></code></span></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">subscriber</span> <span class="o">=</span> <span class="n">AlgorandSubscriber</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;filters&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;filterName&#39;</span><span class="p">,</span> <span class="s1">&#39;filter&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c1"># Filter properties}}], ...}, ...)</span>
+<span class="c1"># or:</span>
+<span class="n">get_subscribed_transactions</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;filterName&#39;</span><span class="p">,</span> <span class="s1">&#39;filter&#39;</span><span class="p">:</span> <span class="p">{</span><span class="c1"># Filter properties}}], ...)</span>
+</pre></div>
+</div>
+<p>Currently this allows you filter based on any combination (AND logic) of:</p>
+<ul>
+<li><p>Transaction type e.g. <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">type:</span> <span class="pre">&quot;axfer&quot;</span> <span class="pre">}</span></code> or <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{type:</span> <span class="pre">[&quot;axfer&quot;,</span> <span class="pre">&quot;pay&quot;]</span> <span class="pre">}</span></code></p></li>
+<li><p>Account (sender and receiver) e.g. <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">sender:</span> <span class="pre">&quot;ABCDE..F&quot;</span> <span class="pre">}</span></code> or <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">sender:</span> <span class="pre">[&quot;ABCDE..F&quot;,</span> <span class="pre">&quot;ZYXWV..A&quot;]</span> <span class="pre">}</span></code> and <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">receiver:</span> <span class="pre">&quot;12345..6&quot;</span> <span class="pre">}</span></code> or <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">receiver:</span> <span class="pre">[&quot;ABCDE..F&quot;,</span> <span class="pre">&quot;ZYXWV..A&quot;]</span> <span class="pre">}</span></code></p></li>
+<li><p>Note prefix e.g. <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">note_prefix:</span> <span class="pre">&quot;xyz&quot;</span> <span class="pre">}</span></code></p></li>
+<li><p>Apps</p>
+<ul>
+<li><p>ID e.g. <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">appId:</span> <span class="pre">54321</span> <span class="pre">}</span></code> or <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">appId:</span> <span class="pre">[54321,</span> <span class="pre">12345]</span> <span class="pre">}</span></code></p></li>
+<li><p>Creation e.g. <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">app_create:</span> <span class="pre">true</span> <span class="pre">}</span></code></p></li>
+<li><p>Call on-complete(s) e.g. <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">app_on_complete:</span> <span class="pre">'optin'</span> <span class="pre">}</span></code> or <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">app_on_complete:</span> <span class="pre">['optin',</span> <span class="pre">'noop']</span> <span class="pre">}</span></code></p></li>
+<li><p>ARC4 method signature(s) e.g. <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">method_signature:</span> <span class="pre">&quot;MyMethod(uint64,string)&quot;</span> <span class="pre">}</span></code> or <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">method_signature:</span> <span class="pre">[&quot;MyMethod(uint64,string)uint64&quot;,</span> <span class="pre">&quot;MyMethod2(unit64)&quot;]</span> <span class="pre">}</span></code></p></li>
+<li><p>Call arguments e.g.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;filter&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;app_call_arguments_match&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">app_call_arguments</span><span class="p">:</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">app_call_arguments</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span>
+        <span class="n">app_call_arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;hello_world&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Emitted ARC-28 event(s) e.g.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;filter&#39;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="s1">&#39;arc28_events&#39;</span><span class="p">:</span> <span class="p">[{</span> <span class="s1">&#39;group_name&#39;</span><span class="p">:</span> <span class="s2">&quot;group1&quot;</span><span class="p">,</span> <span class="s1">&#39;event_name&#39;</span><span class="p">:</span> <span class="s2">&quot;MyEvent&quot;</span> <span class="p">}];</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note: For this to work you need to <a class="reference internal" href="#arc-28-event-subscription-and-reads"><span class="xref myst">specify ARC-28 events in the subscription config</span></a>.</p>
+</li>
+</ul>
+</li>
+<li><p>Assets</p>
+<ul class="simple">
+<li><p>ID e.g. <code class="docutils literal notranslate"><span class="pre">'filter':</span> <span class="pre">{</span> <span class="pre">'asset_id':</span> <span class="pre">123456</span> <span class="pre">}</span></code> or <code class="docutils literal notranslate"><span class="pre">'filter':</span> <span class="pre">{</span> <span class="pre">'asset_id':</span> <span class="pre">[123456,</span> <span class="pre">456789]</span> <span class="pre">}</span></code></p></li>
+<li><p>Creation e.g. <code class="docutils literal notranslate"><span class="pre">'filter':</span> <span class="pre">{</span> <span class="pre">'asset_create':</span> <span class="pre">true</span> <span class="pre">}</span></code></p></li>
+<li><p>Amount transferred (min and/or max) e.g. <code class="docutils literal notranslate"><span class="pre">'filter':</span> <span class="pre">{</span> <span class="pre">'type':</span> <span class="pre">'axfer',</span> <span class="pre">'min_amount':</span> <span class="pre">1,</span> <span class="pre">'max_amount':</span> <span class="pre">100</span> <span class="pre">}</span></code></p></li>
+<li><p>Balance changes (asset ID, sender, receiver, close to, min and/or max change) e.g. <code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">{</span> <span class="pre">'balance_changes':</span> <span class="pre">[{'asset_id':</span> <span class="pre">[15345,</span> <span class="pre">36234],</span> <span class="pre">'roles':</span> <span class="pre">[BalanceChangerole.Sender],</span> <span class="pre">'address':</span> <span class="pre">&quot;ABC...&quot;,</span> <span class="pre">'min_amount':</span> <span class="pre">1,</span> <span class="pre">'max_amount':</span> <span class="pre">2}]}</span></code></p></li>
+</ul>
+</li>
+<li><p>Algo transfers (pay transactions)</p>
+<ul class="simple">
+<li><p>Amount transferred (min and/or max) e.g. <code class="docutils literal notranslate"><span class="pre">'filter':</span> <span class="pre">{</span> <span class="pre">'type':</span> <span class="pre">'pay',</span> <span class="pre">'min_amount':</span> <span class="pre">1,</span> <span class="pre">'max_amount':</span> <span class="pre">100</span> <span class="pre">}</span></code></p></li>
+<li><p>Balance changes (sender, receiver, close to, min and/or max change) e.g. <code class="docutils literal notranslate"><span class="pre">'filter':</span> <span class="pre">{</span> <span class="pre">'balance_changes':</span> <span class="pre">[{'roles':</span> <span class="pre">[BalanceChangeRole.Sender],</span> <span class="pre">'address':</span> <span class="pre">&quot;ABC...&quot;,</span> <span class="pre">'min_amount':</span> <span class="pre">1,</span> <span class="pre">'max_amount':</span> <span class="pre">2}]}</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>You can supply multiple, named filters via the <a class="reference internal" href="subscriptions.html#namedtransactionfilter"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">NamedTransactionFilter</span></code></span></a> type. When subscribed transactions are returned each transaction will have a <code class="docutils literal notranslate"><span class="pre">filters_matched</span></code> property that will have an array of any filter(s) that caused that transaction to be returned. When using <a class="reference internal" href="subscriber.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code></span></a>, you can subscribe to events that are emitted with the filter name.</p>
+</section>
+<section id="arc-28-event-subscription-and-reads">
+<h3>ARC-28 event subscription and reads<a class="headerlink" href="#arc-28-event-subscription-and-reads" title="Link to this heading">¶</a></h3>
+<p>You can <a class="reference internal" href="#extensive-subscription-filtering"><span class="xref myst">subscribe to ARC-28 events</span></a> for a smart contract, similar to how you can <a class="reference external" href="https://docs.web3js.org/guides/events_subscriptions/">subscribe to events in Ethereum</a>.</p>
+<p>Furthermore, you can receive any ARC-28 events that a smart contract call you subscribe to emitted in the <a class="reference internal" href="subscriptions.html#subscribedtransaction"><span class="std std-ref">subscribed transaction object</span></a>.</p>
+<p>Both subscription and receiving ARC-28 events work through the use of the <code class="docutils literal notranslate"><span class="pre">arc28Events</span></code> parameter in <a class="reference internal" href="subscriber.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code></span></a> and <a class="reference internal" href="subscriptions.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">get_subscribed_transactions</span></code></span></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">group1_events</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;groupName&quot;</span><span class="p">:</span> <span class="s2">&quot;group1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;events&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;MyEvent&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;uint64&quot;</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">subscriber</span> <span class="o">=</span> <span class="n">AlgorandSubscriber</span><span class="p">(</span><span class="n">arc28_events</span><span class="o">=</span><span class="p">[</span><span class="n">group1_events</span><span class="p">],</span> <span class="o">...</span><span class="p">)</span>
+
+<span class="c1"># or:</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">get_subscribed_transactions</span><span class="p">(</span><span class="n">arc28_events</span><span class="o">=</span><span class="p">[</span><span class="n">group1_events</span><span class="p">],</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Arc28EventGroup</span></code> type has the following definition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Arc28EventGroup</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Specifies a group of ARC-28 event definitions along with instructions for when to attempt to process the events.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">group_name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The name to designate for this group of events.&quot;&quot;&quot;</span>
+
+    <span class="n">process_for_app_ids</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional list of app IDs that this event should apply to.&quot;&quot;&quot;</span>
+
+    <span class="n">process_transaction</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">TransactionResult</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Optional predicate to indicate if these ARC-28 events should be processed for the given transaction.&quot;&quot;&quot;</span>
+
+    <span class="n">continue_on_error</span><span class="p">:</span> <span class="nb">bool</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Whether or not to silently (with warning log) continue if an error is encountered processing the ARC-28 event data; default = False.&quot;&quot;&quot;</span>
+
+    <span class="n">events</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Arc28Event</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The list of ARC-28 event definitions.&quot;&quot;&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Arc28Event</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The definition of metadata for an ARC-28 event as per the ARC-28 specification.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The name of the event&quot;&quot;&quot;</span>
+
+    <span class="n">desc</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An optional, user-friendly description for the event&quot;&quot;&quot;</span>
+
+    <span class="n">args</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Arc28EventArg</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The arguments of the event, in order&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Each group allows you to apply logic to the applicability and processing of a set of events. This structure allows you to safely process the events from multiple contracts in the same subscriber, or perform more advanced filtering logic to event processing.</p>
+<p>When specifying an <a class="reference internal" href="#extensive-subscription-filtering"><span class="xref myst">ARC-28 event filter</span></a>, you specify both the <code class="docutils literal notranslate"><span class="pre">group_name</span></code> and <code class="docutils literal notranslate"><span class="pre">event_name</span></code>(s) to narrow down what event(s) you want to subscribe to.</p>
+<p>If you want to emit an ARC-28 event from your smart contract you can follow the <a class="reference internal" href="#emit-arc-28-events"><span class="xref myst">below code examples</span></a>.</p>
+</section>
+<section id="first-class-inner-transaction-support">
+<h3>First-class inner transaction support<a class="headerlink" href="#first-class-inner-transaction-support" title="Link to this heading">¶</a></h3>
+<p>When you subscribe to transactions any subscriptions that cover an inner transaction will pick up that inner transaction and <a class="reference internal" href="subscriptions.html#subscribedtransaction"><span class="std std-ref">return</span></a> it to you correctly.</p>
+<p>Note: the behaviour Algorand Indexer has is to return the parent transaction, not the inner transaction; this library will always return the actual transaction you subscribed to.</p>
+<p>If you <a class="reference internal" href="subscriptions.html#subscribedtransaction"><span class="std std-ref">receive</span></a> an inner transaction then there will be a <code class="docutils literal notranslate"><span class="pre">parent_transaction_id</span></code> field populated that allows you to see that it was an inner transaction and how to identify the parent transaction.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">id</span></code> of an inner transaction will be set to <code class="docutils literal notranslate"><span class="pre">{parent_transaction_id}/inner/{index-of-child-within-parent}</span></code> where <code class="docutils literal notranslate"><span class="pre">{index-of-child-within-parent}</span></code> is calculated based on uniquely walking the tree of potentially nested inner transactions. <a class="reference external" href="https://allo.info/tx/group/cHiEEvBCRGnUhz9409gHl%2Fvn00lYDZnJoppC3YexRr0%3D">This transaction in Allo.info</a> is a good illustration of how inner transaction indexes are allocated (this library uses the same approach).</p>
+<p>All <a class="reference internal" href="subscriptions.html#subscribedtransaction"><span class="std std-ref">returned</span></a> transactions will have an <code class="docutils literal notranslate"><span class="pre">inner-txns</span></code> property with any inner transactions of that transaction populated (recursively).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">intra-round-offset</span></code> field in a <a class="reference internal" href="subscriptions.html#subscribedtransaction"><span class="std std-ref">subscribed transaction or inner transaction within</span></a> is calculated by walking the full tree depth-first from the first transaction in the block, through any inner transactions recursively starting from an index of 0. This algorithm matches the one in Algorand Indexer and ensures that all transactions have a unique index, but the top level transaction in the block don’t necessarily have a sequential index.</p>
+</section>
+<section id="state-proof-support">
+<h3>State-proof support<a class="headerlink" href="#state-proof-support" title="Link to this heading">¶</a></h3>
+<p>You can subscribe to <a class="reference external" href="https://dev.algorand.co/concepts/protocol/stateproofs">state proof</a> transactions using this subscriber library. At the time of writing state proof transactions are not supported by algosdk v2 and custom handling has been added to ensure this valuable type of transaction can be subscribed to.</p>
+<p>The field level documentation of the <a class="reference internal" href="subscriptions.html#subscribedtransaction"><span class="std std-ref">returned state proof transaction</span></a> is comprehensively documented via <a class="reference external" href="https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/indexer.ts#L277">AlgoKit Utils</a>.</p>
+<p>By exposing this functionality, this library can be used to create a <a class="reference external" href="https://dev.algorand.co/concepts/protocol/stateproofs">light client</a>.</p>
+</section>
+<section id="simple-programming-model">
+<h3>Simple programming model<a class="headerlink" href="#simple-programming-model" title="Link to this heading">¶</a></h3>
+<p>This library is easy to use and consume through <a class="reference external" href="https://docs.python.org/3/library/importlib.metadata.html#entry-points" title="Python 3.14"><span class="xref myst">easy to use, type-safe TypeScript methods and objects</span></a> and subscribed transactions have a <a class="reference internal" href="subscriptions.html#subscribedtransaction"><span class="std std-ref">comprehensive and familiar model type</span></a> with all relevant/useful information about that transaction (including things like transaction id, round number, created asset/app id, app logs, etc.) modelled on the indexer data model (which is used regardless of whether the transactions come from indexer or algod so it’s a consistent experience).</p>
+<p>For more examples of how to use it see the <a class="reference internal" href="subscriber.html"><span class="std std-doc">relevant documentation</span></a>.</p>
+</section>
+<section id="easy-to-deploy">
+<h3>Easy to deploy<a class="headerlink" href="#easy-to-deploy" title="Link to this heading">¶</a></h3>
+<p>Because the <a class="reference external" href="https://docs.python.org/3/library/importlib.metadata.html#entry-points" title="Python 3.14"><span class="xref myst">entry points</span></a> of this library are simple TypeScript methods to execute it you simply need to run it in a valid JavaScript execution environment. For instance, you could run it within a web browser if you want a user facing app to show real-time transaction notifications in-app, or in a Node.js process running in the myriad of ways Node.js can be run.</p>
+<p>Because of that, you have full control over how you want to deploy and use the subscriber; it will work with whatever persistence (e.g. sql, no-sql, etc.), queuing/messaging (e.g. queues, topics, buses, web hooks, web sockets) and compute (e.g. serverless periodic lambdas, continually running containers, virtual machines, etc.) services you want to use.</p>
+</section>
+<section id="fast-initial-index">
+<h3>Fast initial index<a class="headerlink" href="#fast-initial-index" title="Link to this heading">¶</a></h3>
+<p>When <a class="reference internal" href="#notification-and-indexing"><span class="xref myst">subscribing to the chain</span></a> for the purposes of building an index you often will want to start at the beginning of the chain or a substantial time in the past when the given solution you are subscribing for started.</p>
+<p>This kind of catch up takes days to process since algod only lets you retrieve a single block at a time and retrieving a block takes 0.5-1s. Given there are millions of blocks in MainNet it doesn’t take long to do the math to see why it takes so long to catch up.</p>
+<p>This subscriber library has a unique, optional indexer catch up mode that allows you to use indexer to catch up to the tip of the chain in seconds or minutes rather than days for your specific filter.</p>
+<p>This is really handy when you are doing local development or spinning up a new environment and don’t want to wait for days.</p>
+<p>To make use of this feature, you need to set the <code class="docutils literal notranslate"><span class="pre">sync_behaviour</span></code> config to <code class="docutils literal notranslate"><span class="pre">catchup-with-indexer</span></code> and ensure that you pass <code class="docutils literal notranslate"><span class="pre">indexer</span></code> in to the <a class="reference external" href="https://docs.python.org/3/library/importlib.metadata.html#entry-points" title="Python 3.14"><span class="xref myst">entry point</span></a> along with <code class="docutils literal notranslate"><span class="pre">algod</span></code>.</p>
+<p>Any <a class="reference internal" href="#extensive-subscription-filtering"><span class="xref myst">filter</span></a> you apply will be seamlessly translated to indexer searches to get the historic transactions in the most efficient way possible based on the apis indexer exposes. Once the subscriber is within <code class="docutils literal notranslate"><span class="pre">max_rounds_to_sync</span></code> of the tip of the chain it will switch to subscribing using <code class="docutils literal notranslate"><span class="pre">algod</span></code>.</p>
+<p>To see this in action, you can run the Data History Museum example in this repository against MainNet and see it sync millions of rounds in seconds.</p>
+<p>The indexer catchup isn’t magic - if the filter you are trying to catch up with generates an enormous number of transactions (e.g. hundreds of thousands or millions) then it will run very slowly and has the potential for running out of compute and memory time depending on what the constraints are in the deployment environment you are running in. In that instance though, there is a config parameter you can use <code class="docutils literal notranslate"><span class="pre">max_indexer_rounds_to_sync</span></code> so you can break the indexer catchup into multiple “polls” e.g. 100,000 rounds at a time. This allows a smaller batch of transactions to be retrieved and persisted in multiple batches.</p>
+<p>To understand how the indexer behaviour works to know if you are likely to generate a lot of transactions it’s worth understanding the architecture of the indexer catchup; indexer catchup runs in two stages:</p>
+<ol class="arabic simple">
+<li><p><strong>Pre-filtering</strong>: Any filters that can be translated to the <a class="reference external" href="https://dev.algorand.co/reference/rest-apis/indexer/#lookuptransaction">indexer search transactions endpoint</a>. This query is then run between the rounds that need to be synced and paginated in the max number of results (1000) at a time until all of the transactions are retrieved. This ensures we get round-based transactional consistency. This is the filter that can easily explode out though and take a long time when using indexer catchup. For avoidance of doubt, the following filters are the ones that are converted to a pre-filter:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sender</span></code> (single value)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">receiver</span></code> (single value)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> (single value)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">note_prefix</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">app_id</span></code> (single value)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">asset_id</span></code> (single value)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_amount</span></code> (and <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">=</span> <span class="pre">pay</span></code> or <code class="docutils literal notranslate"><span class="pre">assetId</span></code> provided)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_amount</span></code> (and <code class="docutils literal notranslate"><span class="pre">maxAmount</span> <span class="pre">&lt;</span> <span class="pre">Number.MAX_SAFE_INTEGER</span></code> and <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">=</span> <span class="pre">pay</span></code> or (<code class="docutils literal notranslate"><span class="pre">assetId</span></code> provided and <code class="docutils literal notranslate"><span class="pre">minAmount</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>))</p></li>
+</ul>
+</li>
+<li><p><strong>Post-filtering</strong>: All remaining filters are then applied in-memory to the resulting list of transactions that are returned from the pre-filter before being returned as subscribed transactions.</p></li>
+</ol>
+</section>
+</section>
+<section id="entry-points">
+<h2>Entry points<a class="headerlink" href="#entry-points" title="Link to this heading">¶</a></h2>
+<p>There are two entry points into the subscriber functionality. The lower level <a class="reference internal" href="subscriptions.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">get_subscribed_transactions</span></code></span></a> method that contains the raw subscription logic for a single “poll”, and the <a class="reference internal" href="subscriber.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code></span></a> class that provides a higher level interface that is easier to use and takes care of a lot more orchestration logic for you (particularly around the ability to continuously poll).</p>
+<p>Both are first-class supported ways of using this library, but we generally recommend starting with the <code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code> since it’s easier to use and will cover the majority of use cases.</p>
+</section>
+<section id="reference-docs">
+<h2>Reference docs<a class="headerlink" href="#reference-docs" title="Link to this heading">¶</a></h2>
+<p><a class="reference internal" href="#./code/README.md"><span class="xref myst">See reference docs</span></a>.</p>
+</section>
+<section id="emit-arc-28-events">
+<h2>Emit ARC-28 events<a class="headerlink" href="#emit-arc-28-events" title="Link to this heading">¶</a></h2>
+<p>To emit ARC-28 events from your smart contract you can use the following syntax.</p>
+<section id="algorand-python">
+<h3>Algorand Python<a class="headerlink" href="#algorand-python" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@arc4</span><span class="o">.</span><span class="n">abimethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">emit_swapped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">arc4</span><span class="o">.</span><span class="n">UInt64</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">arc4</span><span class="o">.</span><span class="n">UInt64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">arc4</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="s2">&quot;MyEvent&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>OR:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyEvent</span><span class="p">(</span><span class="n">arc4</span><span class="o">.</span><span class="n">Struct</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">:</span> <span class="n">arc4</span><span class="o">.</span><span class="n">String</span>
+    <span class="n">b</span><span class="p">:</span> <span class="n">arc4</span><span class="o">.</span><span class="n">UInt64</span>
+
+<span class="c1"># ...</span>
+
+<span class="nd">@arc4</span><span class="o">.</span><span class="n">abimethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">emit_swapped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">arc4</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">arc4</span><span class="o">.</span><span class="n">UInt64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">arc4</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">MyEvent</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="tealscript">
+<h3>TealScript<a class="headerlink" href="#tealscript" title="Link to this heading">¶</a></h3>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">MyEvent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">EventLogger</span><span class="o">&lt;</span><span class="p">{</span>
+<span class="w">  </span><span class="nx">stringField</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span>
+<span class="w">  </span><span class="nx">intField</span><span class="o">:</span><span class="w"> </span><span class="kt">uint64</span>
+<span class="p">}</span><span class="o">&gt;</span><span class="p">();</span>
+
+<span class="c1">// ...</span>
+
+<span class="k">this</span><span class="p">.</span><span class="nx">MyEvent</span><span class="p">.</span><span class="nx">log</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">stringField</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;a&quot;</span>
+<span class="w">  </span><span class="nx">intField</span><span class="o">:</span><span class="w"> </span><span class="kt">2</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="pyteal">
+<h3>PyTEAL<a class="headerlink" href="#pyteal" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyEvent</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">abi</span><span class="o">.</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">stringField</span><span class="p">:</span> <span class="n">pt</span><span class="o">.</span><span class="n">abi</span><span class="o">.</span><span class="n">Field</span><span class="p">[</span><span class="n">pt</span><span class="o">.</span><span class="n">abi</span><span class="o">.</span><span class="n">String</span><span class="p">]</span>
+    <span class="n">intField</span><span class="p">:</span> <span class="n">pt</span><span class="o">.</span><span class="n">abi</span><span class="o">.</span><span class="n">Field</span><span class="p">[</span><span class="n">pt</span><span class="o">.</span><span class="n">abi</span><span class="o">.</span><span class="n">Uint64</span><span class="p">]</span>
+
+<span class="c1"># ...</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">external</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">myMethod</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">pt</span><span class="o">.</span><span class="n">abi</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">pt</span><span class="o">.</span><span class="n">abi</span><span class="o">.</span><span class="n">Uint64</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pt</span><span class="o">.</span><span class="n">Expr</span><span class="p">:</span>
+    <span class="c1"># ...</span>
+    <span class="k">return</span> <span class="n">pt</span><span class="o">.</span><span class="n">Seq</span><span class="p">(</span>
+        <span class="c1"># ...</span>
+        <span class="p">(</span><span class="n">event</span> <span class="o">:=</span> <span class="n">MyEvent</span><span class="p">())</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span>
+        <span class="n">pt</span><span class="o">.</span><span class="n">Log</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">Concat</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">MethodSignature</span><span class="p">(</span><span class="s2">&quot;MyEvent(byte[],uint64)&quot;</span><span class="p">),</span> <span class="n">event</span><span class="o">.</span><span class="n">_stored_value</span><span class="o">.</span><span class="n">load</span><span class="p">())),</span>
+        <span class="n">pt</span><span class="o">.</span><span class="n">Approve</span><span class="p">(),</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Note: if your event doesn’t have any dynamic ARC-4 types in it then you can simplify that to something like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pt</span><span class="o">.</span><span class="n">Log</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">Concat</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">MethodSignature</span><span class="p">(</span><span class="s2">&quot;MyEvent(byte[],uint64)&quot;</span><span class="p">),</span> <span class="n">a</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">pt</span><span class="o">.</span><span class="n">Itob</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">get</span><span class="p">()))),</span>
+</pre></div>
+</div>
+</section>
+<section id="teal">
+<h3>TEAL<a class="headerlink" href="#teal" title="Link to this heading">¶</a></h3>
+<div class="highlight-teal notranslate"><div class="highlight"><pre><span></span><span class="nf">method</span><span class="w"> </span><span class="s">&quot;MyEvent(byte[],uint64)&quot;</span>
+<span class="nf">frame_dig</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="c1">// or any other command to put the ARC-4 encoded bytes for the event on the stack</span>
+<span class="nf">concat</span>
+<span class="nf">log</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h2>
+<p>To dig deeper into the capabilities of <code class="docutils literal notranslate"><span class="pre">algokit-subscriber</span></code>, continue with the following sections.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="subscriber.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code></div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Algorand Foundation
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Algorand transaction subscription / indexing</a><ul>
+<li><a class="reference internal" href="#quick-start">Quick start</a></li>
+<li><a class="reference internal" href="#capabilities">Capabilities</a><ul>
+<li><a class="reference internal" href="#notification-and-indexing">Notification <em>and</em> indexing</a></li>
+<li><a class="reference internal" href="#low-latency-processing">Low latency processing</a></li>
+<li><a class="reference internal" href="#watermarking-and-resilience">Watermarking and resilience</a></li>
+<li><a class="reference internal" href="#extensive-subscription-filtering">Extensive subscription filtering</a></li>
+<li><a class="reference internal" href="#arc-28-event-subscription-and-reads">ARC-28 event subscription and reads</a></li>
+<li><a class="reference internal" href="#first-class-inner-transaction-support">First-class inner transaction support</a></li>
+<li><a class="reference internal" href="#state-proof-support">State-proof support</a></li>
+<li><a class="reference internal" href="#simple-programming-model">Simple programming model</a></li>
+<li><a class="reference internal" href="#easy-to-deploy">Easy to deploy</a></li>
+<li><a class="reference internal" href="#fast-initial-index">Fast initial index</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#entry-points">Entry points</a></li>
+<li><a class="reference internal" href="#reference-docs">Reference docs</a></li>
+<li><a class="reference internal" href="#emit-arc-28-events">Emit ARC-28 events</a><ul>
+<li><a class="reference internal" href="#algorand-python">Algorand Python</a></li>
+<li><a class="reference internal" href="#tealscript">TealScript</a></li>
+<li><a class="reference internal" href="#pyteal">PyTEAL</a></li>
+<li><a class="reference internal" href="#teal">TEAL</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#next-steps">Next steps</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({"theme": "dark"})</script>
+    </body>
+</html>

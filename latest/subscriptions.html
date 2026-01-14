@@ -1,0 +1,866 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="API Reference" href="api.html" /><link rel="prev" title="AlgorandSubscriber" href="subscriber.html" />
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>get_subscribed_transactions - Algokit Subscriber documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=8c0639ea" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Algokit Subscriber  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Algokit Subscriber  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="subscriber.html"><code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code></a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">get_subscribed_transactions</span></code></a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api.html">API Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of algokit_subscriber</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types</span></code></a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of algokit_subscriber.types</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.indexer.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types.indexer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.block.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types.block</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.event_emitter.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types.event_emitter</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.subscription.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types.subscription</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.arc28.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types.arc28</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.types.transaction.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.types.transaction</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.subscriber.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.subscriber</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.indexer_lookup.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.indexer_lookup</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.utils</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.block.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.block</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.transform.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.transform</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apidocs/algokit_subscriber/algokit_subscriber.subscription.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algokit_subscriber.subscription</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/subscriptions.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="get-subscribed-transactions">
+<h1><code class="docutils literal notranslate"><span class="pre">get_subscribed_transactions</span></code><a class="headerlink" href="#get-subscribed-transactions" title="Link to this heading">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">get_subscribed_transactions</span></code> is the core building block at the centre of this library. It’s a simple, but flexible mechanism that allows you to enact a single subscription “poll” of the Algorand blockchain.</p>
+<p>This is a lower level building block, you likely don’t want to use it directly, but instead use the <a class="reference internal" href="#./subscriber.ts"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code> class</span></a>.</p>
+<p>You can use this method to orchestrate everything from an index of all relevant data from the start of the chain through to simply subscribing to relevant transactions as they emerge at the tip of the chain. It allows you to have reliable at least once delivery even if your code has outages through the use of watermarking.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_subscribed_transactions</span><span class="p">(</span>
+    <span class="n">subscription</span><span class="p">:</span> <span class="n">TransactionSubscriptionParams</span><span class="p">,</span>
+    <span class="n">algod</span><span class="p">:</span> <span class="n">AlgodClient</span><span class="p">,</span>
+    <span class="n">indexer</span><span class="p">:</span> <span class="n">IndexerClient</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransactionSubscriptionResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Executes a single pull/poll to subscribe to transactions on the configured Algorand</span>
+<span class="sd">    blockchain for the given subscription context.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<section id="transactionsubscriptionparams">
+<h2>TransactionSubscriptionParams<a class="headerlink" href="#transactionsubscriptionparams" title="Link to this heading">¶</a></h2>
+<p>Specifying a subscription requires passing in a <code class="docutils literal notranslate"><span class="pre">TransactionSubscriptionParams</span></code> object, which configures the behaviour:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CoreTransactionSubscriptionParams</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">filters</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="s1">&#39;NamedTransactionFilter&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The filter(s) to apply to find transactions of interest.&quot;&quot;&quot;</span>
+
+    <span class="n">arc28_events</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="s1">&#39;Arc28EventGroup&#39;</span><span class="p">]]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Any ARC-28 event definitions to process from app call logs&quot;&quot;&quot;</span>
+
+    <span class="n">max_rounds_to_sync</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The maximum number of rounds to sync from algod for each subscription pull/poll.</span>
+<span class="sd">    Defaults to 500.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">max_indexer_rounds_to_sync</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The maximum number of rounds to sync from indexer when using `sync_behaviour: &#39;catchup-with-indexer&#39;`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">sync_behaviour</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    If the current tip of the configured Algorand blockchain is more than `max_rounds_to_sync`</span>
+<span class="sd">    past `watermark` then how should that be handled.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TransactionSubscriptionParams</span><span class="p">(</span><span class="n">CoreTransactionSubscriptionParams</span><span class="p">):</span>
+    <span class="n">watermark</span><span class="p">:</span> <span class="nb">int</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The current round watermark that transactions have previously been synced to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">current_round</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The current tip of the configured Algorand blockchain.</span>
+<span class="sd">    If not provided, it will be resolved on demand.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="transactionfilter">
+<h2>TransactionFilter<a class="headerlink" href="#transactionfilter" title="Link to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="#transactionsubscriptionparams"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">filters</span></code> parameter</span></a> allows you to specify a set of filters to return a subset of transactions you are interested in. Each filter contains a <code class="docutils literal notranslate"><span class="pre">filter</span></code> property of type <code class="docutils literal notranslate"><span class="pre">TransactionFilter</span></code>, which matches the following type:</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">TransactionFilter</span><span class="p">(</span><span class="nx">TypedDict</span><span class="p">)</span><span class="o">:</span>
+<span class="w">    </span><span class="kr">type</span><span class="o">:</span><span class="w"> </span><span class="nx">NotRequired</span><span class="p">[</span><span class="nx">str</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">list</span><span class="p">[</span><span class="nx">str</span><span class="p">]]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Filter based on the given transaction type(s).&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">sender</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="nx">str</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">list</span><span class="p">[</span><span class="nx">str</span><span class="p">]]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Filter to transactions sent from the specified address(es).&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">receiver</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="nx">str</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">list</span><span class="p">[</span><span class="nx">str</span><span class="p">]]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Filter to transactions being received by the specified address(es).&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">note_prefix</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="nx">str</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">bytes</span><span class="p">]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Filter to transactions with a note having the given prefix.&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">app_id</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="kr">int</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">list</span><span class="p">[</span><span class="kr">int</span><span class="p">]]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Filter to transactions against the app with the given ID(s).&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">app_create</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="nx">bool</span><span class="p">]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Filter to transactions that are creating an app.&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">app_on_complete</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="nx">str</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">list</span><span class="p">[</span><span class="nx">str</span><span class="p">]]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Filter to transactions that have given on complete(s).&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">asset_id</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="kr">int</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">list</span><span class="p">[</span><span class="kr">int</span><span class="p">]]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Filter to transactions against the asset with the given ID(s).&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">asset_create</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="nx">bool</span><span class="p">]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Filter to transactions that are creating an asset.&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">min_amount</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="kr">int</span><span class="p">]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Filter to transactions where the amount being transferred is greater</span>
+<span class="s2">    than or equal to the given minimum (microAlgos or decimal units of an ASA if type: axfer).</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">max_amount</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="kr">int</span><span class="p">]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Filter to transactions where the amount being transferred is less than</span>
+<span class="s2">    or equal to the given maximum (microAlgos or decimal units of an ASA if type: axfer).</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">method_signature</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="nx">str</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">list</span><span class="p">[</span><span class="nx">str</span><span class="p">]]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Filter to app transactions that have the given ARC-0004 method selector(s) for</span>
+<span class="s2">    the given method signature as the first app argument.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">app_call_arguments_match</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="nx">Callable</span><span class="p">[[</span><span class="nx">list</span><span class="p">[</span><span class="nx">bytes</span><span class="p">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">None</span><span class="p">],</span><span class="w"> </span><span class="nx">bool</span><span class="p">]]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Filter to app transactions that meet the given app arguments predicate.&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">arc28_events</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="nx">list</span><span class="p">[</span><span class="nx">dict</span><span class="p">[</span><span class="nx">str</span><span class="p">,</span><span class="w"> </span><span class="nx">str</span><span class="p">]]]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Filter to app transactions that emit the given ARC-28 events.</span>
+<span class="s2">    Note: the definitions for these events must be passed in to the subscription config via `arc28_events`.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">balance_changes</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="nx">list</span><span class="p">[</span><span class="nx">dict</span><span class="p">[</span><span class="nx">str</span><span class="p">,</span><span class="w"> </span><span class="nx">Union</span><span class="p">[</span><span class="kr">int</span><span class="p">,</span><span class="w"> </span><span class="nx">list</span><span class="p">[</span><span class="kr">int</span><span class="p">],</span><span class="w"> </span><span class="nx">str</span><span class="p">,</span><span class="w"> </span><span class="nx">list</span><span class="p">[</span><span class="nx">str</span><span class="p">],</span><span class="w"> </span><span class="s1">&#39;BalanceChangeRole&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">list</span><span class="p">[</span><span class="s1">&#39;BalanceChangeRole&#39;</span><span class="p">]]]]]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Filter to transactions that result in balance changes that match one or more of the given set of balance changes.&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="nx">custom_filter</span><span class="o">:</span><span class="w"> </span><span class="kt">NotRequired</span><span class="p">[</span><span class="nx">Callable</span><span class="p">[[</span><span class="nx">TransactionResult</span><span class="p">],</span><span class="w"> </span><span class="nx">bool</span><span class="p">]]</span>
+<span class="w">    </span><span class="s2">&quot;&quot;&quot;Catch-all custom filter to filter for things that the rest of the filters don&#39;t provide.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Each filter you provide within this type will apply an AND logic between the specified filters, e.g.</p>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;filter&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;axfer&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;sender&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ABC...&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Will return transactions that are <code class="docutils literal notranslate"><span class="pre">axfer</span></code> type AND have a sender of <code class="docutils literal notranslate"><span class="pre">&quot;ABC...&quot;</span></code>.</p>
+<section id="namedtransactionfilter">
+<h3>NamedTransactionFilter<a class="headerlink" href="#namedtransactionfilter" title="Link to this heading">¶</a></h3>
+<p>You can specify multiple filters in an array, where each filter is a <code class="docutils literal notranslate"><span class="pre">NamedTransactionFilter</span></code>, which consists of:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">NamedTransactionFilter</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Specify a named filter to apply to find transactions of interest.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The name to give the filter.&quot;&quot;&quot;</span>
+
+    <span class="nb">filter</span><span class="p">:</span> <span class="n">TransactionFilter</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The filter itself.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>This gives you the ability to detect which filter got matched when a transaction is returned, noting that you can use the same name multiple times if there are multiple filters (aka OR logic) that comprise the same logical filter.</p>
+</section>
+</section>
+<section id="arc28eventgroup">
+<h2>Arc28EventGroup<a class="headerlink" href="#arc28eventgroup" title="Link to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="#transactionsubscriptionparams"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">arc28_events</span></code> parameter</span></a> allows you to define any ARC-28 events that may appear in subscribed transactions so they can either be subscribed to, or be processed and added to the resulting <a class="reference internal" href="#subscribedtransaction"><span class="xref myst">subscribed transaction object</span></a>.</p>
+</section>
+<section id="transactionsubscriptionresult">
+<h2>TransactionSubscriptionResult<a class="headerlink" href="#transactionsubscriptionresult" title="Link to this heading">¶</a></h2>
+<p>The result of calling <code class="docutils literal notranslate"><span class="pre">get_subscribed_transactions</span></code> is a <code class="docutils literal notranslate"><span class="pre">TransactionSubscriptionResult</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TransactionSubscriptionResult</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The result of a single subscription pull/poll.&quot;&quot;&quot;</span>
+
+    <span class="n">synced_round_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The round range that was synced from/to&quot;&quot;&quot;</span>
+
+    <span class="n">current_round</span><span class="p">:</span> <span class="nb">int</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The current detected tip of the configured Algorand blockchain.&quot;&quot;&quot;</span>
+
+    <span class="n">starting_watermark</span><span class="p">:</span> <span class="nb">int</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The watermark value that was retrieved at the start of the subscription poll.&quot;&quot;&quot;</span>
+
+    <span class="n">new_watermark</span><span class="p">:</span> <span class="nb">int</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The new watermark value to persist for the next call to</span>
+<span class="sd">    `get_subscribed_transactions` to continue the sync.</span>
+<span class="sd">    Will be equal to `synced_round_range[1]`. Only persist this</span>
+<span class="sd">    after processing (or in the same atomic transaction as)</span>
+<span class="sd">    subscribed transactions to keep it reliable.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">subscribed_transactions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="s1">&#39;SubscribedTransaction&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Any transactions that matched the given filter within</span>
+<span class="sd">    the synced round range. This substantively uses the indexer transaction</span>
+<span class="sd">    format to represent the data with some additional fields.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">block_metadata</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="s1">&#39;BlockMetadata&#39;</span><span class="p">]]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The metadata about any blocks that were retrieved from algod as part</span>
+<span class="sd">    of the subscription poll.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BlockMetadata</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Metadata about a block that was retrieved from algod.&quot;&quot;&quot;</span>
+
+    <span class="nb">hash</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The base64 block hash.&quot;&quot;&quot;</span>
+
+    <span class="nb">round</span><span class="p">:</span> <span class="nb">int</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The round of the block.&quot;&quot;&quot;</span>
+
+    <span class="n">timestamp</span><span class="p">:</span> <span class="nb">int</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Block creation timestamp in seconds since epoch&quot;&quot;&quot;</span>
+
+    <span class="n">genesis_id</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The genesis ID of the chain.&quot;&quot;&quot;</span>
+
+    <span class="n">genesis_hash</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The base64 genesis hash of the chain.&quot;&quot;&quot;</span>
+
+    <span class="n">previous_block_hash</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The base64 previous block hash.&quot;&quot;&quot;</span>
+
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The base64 seed of the block.&quot;&quot;&quot;</span>
+
+    <span class="n">rewards</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="s1">&#39;BlockRewards&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fields relating to rewards&quot;&quot;&quot;</span>
+
+    <span class="n">parent_transaction_count</span><span class="p">:</span> <span class="nb">int</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Count of parent transactions in this block&quot;&quot;&quot;</span>
+
+    <span class="n">full_transaction_count</span><span class="p">:</span> <span class="nb">int</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Full count of transactions and inner transactions (recursively) in this block.&quot;&quot;&quot;</span>
+
+    <span class="n">txn_counter</span><span class="p">:</span> <span class="nb">int</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Number of the next transaction that will be committed after this block. It is 0 when no transactions have ever been committed (since TxnCounter started being supported).&quot;&quot;&quot;</span>
+
+    <span class="n">transactions_root</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Root of transaction merkle tree using SHA512_256 hash function.</span>
+<span class="sd">    This commitment is computed based on the PaysetCommit type specified in the block&#39;s consensus protocol.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">transactions_root_sha256</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    TransactionsRootSHA256 is an auxiliary TransactionRoot, built using a vector commitment instead of a merkle tree, and SHA256 hash function instead of the default SHA512_256. This commitment can be used on environments where only the SHA256 function exists.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">upgrade_state</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="s1">&#39;BlockUpgradeState&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fields relating to a protocol upgrade.&quot;&quot;&quot;</span>
+
+</pre></div>
+</div>
+</section>
+<section id="subscribedtransaction">
+<h2>SubscribedTransaction<a class="headerlink" href="#subscribedtransaction" title="Link to this heading">¶</a></h2>
+<p>The common model used to expose a transaction that is returned from a subscription is a <code class="docutils literal notranslate"><span class="pre">SubscribedTransaction</span></code>, which can be imported like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">algokit_subscriber</span><span class="w"> </span><span class="kn">import</span> <span class="n">SubscribedTransaction</span>
+</pre></div>
+</div>
+<p>This type is substantively, based on the Indexer <a class="reference external" href="https://github.com/algorandfoundation/algokit-utils-ts/blob/main/src/types/indexer.ts#L77"><code class="docutils literal notranslate"><span class="pre">TransactionResult</span></code></a> <a class="reference external" href="https://dev.algorand.co/reference/rest-apis/indexer#transaction">model</a> format. While the indexer type is used, the subscriber itself doesn’t have to use indexer - any transactions it retrieves from algod are transformed to this common model type. Beyond the indexer type it has some modifications to:</p>
+<ul class="simple">
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">parent_transaction_id</span></code> field so inner transactions have a reference to their parent</p></li>
+<li><p>Override the type of <code class="docutils literal notranslate"><span class="pre">inner-txns</span></code> to be <code class="docutils literal notranslate"><span class="pre">SubscribedTransaction[]</span></code> so inner transactions (recursively) get these extra fields too</p></li>
+<li><p>Add emitted ARC-28 events via <code class="docutils literal notranslate"><span class="pre">arc28_events</span></code></p></li>
+<li><p>The list of filter(s) that caused the transaction to be matched</p></li>
+</ul>
+<p>The definition of the type is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TransactionResult</span> <span class="o">=</span> <span class="n">TypedDict</span><span class="p">(</span><span class="s2">&quot;TransactionResult&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;tx-type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;fee&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;sender&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="s2">&quot;first-valid&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;last-valid&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s2">&quot;confirmed-round&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="kc">None</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
+    <span class="s2">&quot;note&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="s2">&quot;logs&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+    <span class="s2">&quot;round-time&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="s2">&quot;intra-round-offset&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="s2">&quot;signature&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="s1">&#39;TransactionSignature&#39;</span><span class="p">],</span>
+    <span class="s2">&quot;application-transaction&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="s1">&#39;ApplicationTransactionResult&#39;</span><span class="p">],</span>
+    <span class="s2">&quot;created-application-index&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="kc">None</span> <span class="o">|</span> <span class="nb">int</span><span class="p">],</span>
+    <span class="s2">&quot;asset-config-transaction&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="s1">&#39;AssetConfigTransactionResult&#39;</span><span class="p">],</span>
+    <span class="s2">&quot;created-asset-index&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="kc">None</span> <span class="o">|</span> <span class="nb">int</span><span class="p">],</span>
+    <span class="s2">&quot;asset-freeze-transaction&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="s1">&#39;AssetFreezeTransactionResult&#39;</span><span class="p">],</span>
+    <span class="s2">&quot;asset-transfer-transaction&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="s1">&#39;AssetTransferTransactionResult&#39;</span><span class="p">],</span>
+    <span class="s2">&quot;keyreg-transaction&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="s1">&#39;KeyRegistrationTransactionResult&#39;</span><span class="p">],</span>
+    <span class="s2">&quot;payment-transaction&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="s1">&#39;PaymentTransactionResult&#39;</span><span class="p">],</span>
+    <span class="s2">&quot;state-proof-transaction&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="s1">&#39;StateProofTransactionResult&#39;</span><span class="p">],</span>
+    <span class="s2">&quot;auth-addr&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="kc">None</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
+    <span class="s2">&quot;closing-amount&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="kc">None</span> <span class="o">|</span> <span class="nb">int</span><span class="p">],</span>
+    <span class="s2">&quot;genesis-hash&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="s2">&quot;genesis-id&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="s2">&quot;inner-txns&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="s1">&#39;TransactionResult&#39;</span><span class="p">]],</span>
+    <span class="s2">&quot;rekey-to&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="s2">&quot;lease&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="s2">&quot;local-state-delta&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]],</span>
+    <span class="s2">&quot;global-state-delta&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]],</span>
+    <span class="s2">&quot;receiver-rewards&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="s2">&quot;sender-rewards&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="s2">&quot;close-rewards&quot;</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SubscribedTransaction</span><span class="p">(</span><span class="n">TransactionResult</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The common model used to expose a transaction that is returned from a subscription.</span>
+
+<span class="sd">    Substantively, based on the Indexer `TransactionResult` model format with some modifications to:</span>
+<span class="sd">    * Add the `parent_transaction_id` field so inner transactions have a reference to their parent</span>
+<span class="sd">    * Override the type of `inner_txns` to be `SubscribedTransaction[]` so inner transactions (recursively) get these extra fields too</span>
+<span class="sd">    * Add emitted ARC-28 events via `arc28_events`</span>
+<span class="sd">    * Balance changes in algo or assets</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">parent_transaction_id</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="kc">None</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The transaction ID of the parent of this transaction (if it&#39;s an inner transaction).&quot;&quot;&quot;</span>
+
+    <span class="n">inner_txns</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="s1">&#39;SubscribedTransaction&#39;</span><span class="p">]]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Inner transactions produced by application execution.&quot;&quot;&quot;</span>
+
+    <span class="n">arc28_events</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">EmittedArc28Event</span><span class="p">]]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Any ARC-28 events emitted from an app call.&quot;&quot;&quot;</span>
+
+    <span class="n">filters_matched</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The names of any filters that matched the given transaction to result in it being &#39;subscribed&#39;.&quot;&quot;&quot;</span>
+
+    <span class="n">balance_changes</span><span class="p">:</span> <span class="n">NotRequired</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="s1">&#39;BalanceChange&#39;</span><span class="p">]]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The balance changes in the transaction.&quot;&quot;&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BalanceChange</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents a balance change effect for a transaction.&quot;&quot;&quot;</span>
+
+    <span class="n">address</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The address that the balance change is for.&quot;&quot;&quot;</span>
+
+    <span class="n">asset_id</span><span class="p">:</span> <span class="nb">int</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The asset ID of the balance change, or 0 for Algos.&quot;&quot;&quot;</span>
+
+    <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The amount of the balance change in smallest divisible unit or microAlgos.&quot;&quot;&quot;</span>
+
+    <span class="n">roles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="s1">&#39;BalanceChangeRole&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The roles the account was playing that led to the balance change&quot;&quot;&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Arc28EventToProcess</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents an ARC-28 event to be processed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">group_name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The name of the ARC-28 event group the event belongs to&quot;&quot;&quot;</span>
+
+    <span class="n">event_name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The name of the ARC-28 event that was triggered&quot;&quot;&quot;</span>
+
+    <span class="n">event_signature</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The signature of the event e.g. `EventName(type1,type2)`&quot;&quot;&quot;</span>
+
+    <span class="n">event_prefix</span><span class="p">:</span> <span class="nb">str</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The 4-byte hex prefix for the event&quot;&quot;&quot;</span>
+
+    <span class="n">event_definition</span><span class="p">:</span> <span class="n">Arc28Event</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The ARC-28 definition of the event&quot;&quot;&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">EmittedArc28Event</span><span class="p">(</span><span class="n">Arc28EventToProcess</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents an ARC-28 event that was emitted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">args</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The ordered arguments extracted from the event that was emitted&quot;&quot;&quot;</span>
+
+    <span class="n">args_by_name</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The named arguments extracted from the event that was emitted (where the arguments had a name defined)&quot;&quot;&quot;</span>
+
+</pre></div>
+</div>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<p>Here are some examples of how to use this method:</p>
+<section id="real-time-notification-of-transactions-of-interest-at-the-tip-of-the-chain-discarding-stale-records">
+<h3>Real-time notification of transactions of interest at the tip of the chain discarding stale records<a class="headerlink" href="#real-time-notification-of-transactions-of-interest-at-the-tip-of-the-chain-discarding-stale-records" title="Link to this heading">¶</a></h3>
+<p>If you ran the following code on a cron schedule of (say) every 5 seconds it would notify you every time the account (in this case the Data History Museum TestNet account <code class="docutils literal notranslate"><span class="pre">ER7AMZRPD5KDVFWTUUVOADSOWM4RQKEEV2EDYRVSA757UHXOIEKGMBQIVU</span></code>) sent a transaction. If the service stopped working for a period of time and fell behind then
+it would drop old records and restart notifications from the new tip.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">algokit_subscriber</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlgorandSubscriber</span><span class="p">,</span> <span class="n">SubscribedTransaction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">algokit_utils.beta.algorand_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlgorandClient</span>
+
+<span class="n">algorand</span> <span class="o">=</span> <span class="n">AlgorandClient</span><span class="o">.</span><span class="n">test_net</span><span class="p">()</span>
+<span class="n">watermark</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_watermark</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">watermark</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">set_watermark</span><span class="p">(</span><span class="n">new_watermark</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">global</span> <span class="n">watermark</span>  <span class="c1"># noqa: PLW0603</span>
+    <span class="n">watermark</span> <span class="o">=</span> <span class="n">new_watermark</span>
+
+<span class="n">subscriber</span> <span class="o">=</span> <span class="n">AlgorandSubscriber</span><span class="p">(</span><span class="n">algod_client</span><span class="o">=</span><span class="n">algorand</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">algod</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;filters&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;filter1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;filter&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;sender&#39;</span><span class="p">:</span> <span class="s1">&#39;ER7AMZRPD5KDVFWTUUVOADSOWM4RQKEEV2EDYRVSA757UHXOIEKGMBQIVU&#39;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;wait_for_block_when_at_tip&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;watermark_persistence&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;get&#39;</span><span class="p">:</span> <span class="n">get_watermark</span><span class="p">,</span>
+        <span class="s1">&#39;set&#39;</span><span class="p">:</span> <span class="n">set_watermark</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;sync_behaviour&#39;</span><span class="p">:</span> <span class="s1">&#39;skip-sync-newest&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;max_rounds_to_sync&#39;</span><span class="p">:</span> <span class="mi">100</span>
+<span class="p">})</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">notify_transactions</span><span class="p">(</span><span class="n">transaction</span><span class="p">:</span> <span class="n">SubscribedTransaction</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># Implement your notification logic here</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;New transaction from </span><span class="si">{</span><span class="n">transaction</span><span class="p">[</span><span class="s1">&#39;sender&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># noqa: T201</span>
+
+<span class="n">subscriber</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;filter1&#39;</span><span class="p">,</span> <span class="n">notify_transactions</span><span class="p">)</span>
+<span class="n">subscriber</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="real-time-notification-of-transactions-of-interest-at-the-tip-of-the-chain-with-at-least-once-delivery">
+<h3>Real-time notification of transactions of interest at the tip of the chain with at least once delivery<a class="headerlink" href="#real-time-notification-of-transactions-of-interest-at-the-tip-of-the-chain-with-at-least-once-delivery" title="Link to this heading">¶</a></h3>
+<p>If you ran the following code on a cron schedule of (say) every 5 seconds it would notify you every time the account (in this case the Data History Museum TestNet account <code class="docutils literal notranslate"><span class="pre">ER7AMZRPD5KDVFWTUUVOADSOWM4RQKEEV2EDYRVSA757UHXOIEKGMBQIVU</span></code>) sent a transaction. If the service stopped working for a period of time and fell behind then
+it would pick up where it left off and catch up using algod (note: you need to connect it to a archival node).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">algokit_subscriber</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlgorandSubscriber</span><span class="p">,</span> <span class="n">SubscribedTransaction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">algokit_utils.beta.algorand_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlgorandClient</span>
+
+<span class="n">algorand</span> <span class="o">=</span> <span class="n">AlgorandClient</span><span class="o">.</span><span class="n">test_net</span><span class="p">()</span>
+<span class="n">watermark</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_watermark</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">watermark</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">set_watermark</span><span class="p">(</span><span class="n">new_watermark</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">global</span> <span class="n">watermark</span>  <span class="c1"># noqa: PLW0603</span>
+    <span class="n">watermark</span> <span class="o">=</span> <span class="n">new_watermark</span>
+
+<span class="n">subscriber</span> <span class="o">=</span> <span class="n">AlgorandSubscriber</span><span class="p">(</span><span class="n">algod_client</span><span class="o">=</span><span class="n">algorand</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">algod</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;filters&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;filter1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;filter&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;sender&#39;</span><span class="p">:</span> <span class="s1">&#39;ER7AMZRPD5KDVFWTUUVOADSOWM4RQKEEV2EDYRVSA757UHXOIEKGMBQIVU&#39;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;wait_for_block_when_at_tip&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;watermark_persistence&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;get&#39;</span><span class="p">:</span> <span class="n">get_watermark</span><span class="p">,</span>
+        <span class="s1">&#39;set&#39;</span><span class="p">:</span> <span class="n">set_watermark</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;sync_behaviour&#39;</span><span class="p">:</span> <span class="s1">&#39;sync-oldest-start-now&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;max_rounds_to_sync&#39;</span><span class="p">:</span> <span class="mi">100</span>
+<span class="p">})</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">notify_transactions</span><span class="p">(</span><span class="n">transaction</span><span class="p">:</span> <span class="n">SubscribedTransaction</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># Implement your notification logic here</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;New transaction from </span><span class="si">{</span><span class="n">transaction</span><span class="p">[</span><span class="s1">&#39;sender&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># noqa: T201</span>
+
+<span class="n">subscriber</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;filter1&#39;</span><span class="p">,</span> <span class="n">notify_transactions</span><span class="p">)</span>
+<span class="n">subscriber</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="quickly-building-a-reliable-up-to-date-cache-index-of-all-transactions-of-interest-from-the-beginning-of-the-chain">
+<h3>Quickly building a reliable, up-to-date cache index of all transactions of interest from the beginning of the chain<a class="headerlink" href="#quickly-building-a-reliable-up-to-date-cache-index-of-all-transactions-of-interest-from-the-beginning-of-the-chain" title="Link to this heading">¶</a></h3>
+<p>If you ran the following code on a cron schedule of (say) every 30 - 60 seconds it would create a cached index of all assets created by the account (in this case the Data History Museum TestNet account <code class="docutils literal notranslate"><span class="pre">ER7AMZRPD5KDVFWTUUVOADSOWM4RQKEEV2EDYRVSA757UHXOIEKGMBQIVU</span></code>). Given it uses indexer to catch up you can deploy this into a fresh environment with an empty database and it will catch up in seconds rather than days.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">algokit_subscriber</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlgorandSubscriber</span><span class="p">,</span> <span class="n">SubscribedTransaction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">algokit_utils.beta.algorand_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">AlgorandClient</span>
+
+<span class="n">algorand</span> <span class="o">=</span> <span class="n">AlgorandClient</span><span class="o">.</span><span class="n">test_net</span><span class="p">()</span>
+<span class="n">watermark</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_watermark</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">watermark</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">set_watermark</span><span class="p">(</span><span class="n">new_watermark</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">global</span> <span class="n">watermark</span>  <span class="c1"># noqa: PLW0603</span>
+    <span class="n">watermark</span> <span class="o">=</span> <span class="n">new_watermark</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">save_transactions</span><span class="p">(</span><span class="n">transactions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SubscribedTransaction</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># Implement your logic to save transactions here</span>
+    <span class="k">pass</span>
+
+<span class="n">subscriber</span> <span class="o">=</span> <span class="n">AlgorandSubscriber</span><span class="p">(</span><span class="n">algod_client</span><span class="o">=</span><span class="n">algorand</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">algod</span><span class="p">,</span> <span class="n">indexer_client</span><span class="o">=</span><span class="n">algorand</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">indexer</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;filters&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;filter1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;filter&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;acfg&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;sender&#39;</span><span class="p">:</span> <span class="s1">&#39;ER7AMZRPD5KDVFWTUUVOADSOWM4RQKEEV2EDYRVSA757UHXOIEKGMBQIVU&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;asset_create&#39;</span><span class="p">:</span> <span class="kc">True</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;wait_for_block_when_at_tip&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;watermark_persistence&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;get&#39;</span><span class="p">:</span> <span class="n">get_watermark</span><span class="p">,</span>
+        <span class="s1">&#39;set&#39;</span><span class="p">:</span> <span class="n">set_watermark</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;sync_behaviour&#39;</span><span class="p">:</span> <span class="s1">&#39;catchup-with-indexer&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;max_rounds_to_sync&#39;</span><span class="p">:</span> <span class="mi">1000</span>
+<span class="p">})</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">process_transactions</span><span class="p">(</span><span class="n">transaction</span><span class="p">:</span> <span class="n">SubscribedTransaction</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">save_transactions</span><span class="p">([</span><span class="n">transaction</span><span class="p">])</span>
+
+<span class="n">subscriber</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;filter1&#39;</span><span class="p">,</span> <span class="n">process_transactions</span><span class="p">)</span>
+<span class="n">subscriber</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="api.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">API Reference</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="subscriber.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><code class="docutils literal notranslate"><span class="pre">AlgorandSubscriber</span></code></div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Algorand Foundation
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">get_subscribed_transactions</span></code></a><ul>
+<li><a class="reference internal" href="#transactionsubscriptionparams">TransactionSubscriptionParams</a></li>
+<li><a class="reference internal" href="#transactionfilter">TransactionFilter</a><ul>
+<li><a class="reference internal" href="#namedtransactionfilter">NamedTransactionFilter</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#arc28eventgroup">Arc28EventGroup</a></li>
+<li><a class="reference internal" href="#transactionsubscriptionresult">TransactionSubscriptionResult</a></li>
+<li><a class="reference internal" href="#subscribedtransaction">SubscribedTransaction</a></li>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#real-time-notification-of-transactions-of-interest-at-the-tip-of-the-chain-discarding-stale-records">Real-time notification of transactions of interest at the tip of the chain discarding stale records</a></li>
+<li><a class="reference internal" href="#real-time-notification-of-transactions-of-interest-at-the-tip-of-the-chain-with-at-least-once-delivery">Real-time notification of transactions of interest at the tip of the chain with at least once delivery</a></li>
+<li><a class="reference internal" href="#quickly-building-a-reliable-up-to-date-cache-index-of-all-transactions-of-interest-from-the-beginning-of-the-chain">Quickly building a reliable, up-to-date cache index of all transactions of interest from the beginning of the chain</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({"theme": "dark"})</script>
+    </body>
+</html>
